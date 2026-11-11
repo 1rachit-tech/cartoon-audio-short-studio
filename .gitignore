@@ -1,0 +1,25 @@
+# Generated media and render intermediates
+out/
+frames/
+stills/
+work/
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.aac
+*.jpg
+*.jpeg
+*.png
+
+# Node / Python
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
