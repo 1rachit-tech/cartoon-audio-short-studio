@@ -1,9 +1,9 @@
 # GitHub Codespaces setup (Android-friendly)
 
-1. Open the repository in Chrome.
-2. Use the repository's **Code → Codespaces → Create codespace on main** flow.
-3. Start with the default machine size; do not select a larger paid machine
-   unless you have checked the billing implications.
+1. Open this repository in Chrome.
+2. Select **Code → Codespaces → Create codespace on main**.
+3. Start with the default machine size; check billing before choosing a larger
+   or paid machine.
 4. In the Codespaces terminal, inspect the environment:
 
 ```bash
@@ -12,18 +12,36 @@ python3 --version
 ffmpeg -version
 ```
 
-5. The target is Node 22.6+, Python 3, and FFmpeg. Install only missing
-   dependencies after checking the Codespaces usage/cost page.
-6. Open the repository root and confirm the skill exists at:
+5. The target is Node.js 22.6+, Python 3, and FFmpeg. Install missing
+   dependencies only after checking Codespaces usage/cost.
+6. Install the Node dependency and browser:
 
-```text
-.agents/skills/cartoon-audio-short/SKILL.md
+```bash
+npm install
+npx playwright install chromium
+bash scripts/check-env.sh
 ```
 
-## Important
-The original uploaded skill refers to a `kit/` folder that was not included.
-This repository currently contains the skill instructions and project planning
-docs, not a complete animation renderer. Do not run a presumed setup script
-until the kit/engine has actually been added and inspected.
+7. Run the five-second prototype:
 
-Generated renders should go into `out/` and must not be committed.
+```bash
+npm run render:sample
+```
+
+The prototype writes `out/sample.mp4`. Generated frames are stored in
+`frames/`; both locations are git-ignored.
+
+## Current prototype limits
+- The first renderer is a simple procedural 2D cartoon scene used to validate
+  the frame-capture and MP4-export pipeline.
+- It does not yet implement the complete 3D toon world, character system,
+  voiceover synchronization, generated music/SFX, or full audio mix specified
+  in the production skill.
+- The original uploaded skill refers to a `kit/` directory that was not
+  included. The full renderer is being built in milestones; do not assume that
+  the original kit exists.
+
+## Cost and privacy
+Codespaces compute/storage can incur charges after included quotas. Check the
+billing page before longer renders or larger machines. Do not commit API keys,
+tokens, private voiceovers, or generated personal audio.
